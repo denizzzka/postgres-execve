@@ -1,4 +1,4 @@
-CREATE FUNCTION exec(cmd bytea[], _stdin bytea, _log boolean) RETURNS bytea[]
+CREATE FUNCTION execve(cmd bytea[], _stdin bytea, _log boolean) RETURNS bytea[]
     LANGUAGE plpythonu COST 1000
     AS $$
 from subprocess import Popen, PIPE
@@ -22,5 +22,5 @@ return res
 $$;
 
 
-COMMENT ON FUNCTION exec(cmd bytea[], _stdin bytea, _log boolean) IS 'If _log is true all call will be recorded into postgresql server log
+COMMENT ON FUNCTION execve(cmd bytea[], _stdin bytea, _log boolean) IS 'If _log is true all call will be recorded into postgresql server log
 On failure log will be recorded in any case.';
